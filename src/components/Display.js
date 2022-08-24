@@ -6,13 +6,13 @@ function Display({ characters, nations, roles }) {
         <div className="Display">
             <h1>Display!!</h1>
             {characters.map((character) => {
-                return <CharacterCard character={character} />
+                return <CharacterCard key={character.id} character={character} />
             })}
             {nations.map((nation)=>{
-                return <h1>{nation.nation_name} located in {nation.nation_location}</h1>
+                return <h1 key={nation.id}>{nation.nation_name} located in {nation.nation_location}</h1>
             })}
             {roles.map((role)=>{
-                return <h1>{role.role_title} || {role.role_rating}</h1>
+                return <h1 key={role.id}>{role.role_title} || {role.role_rating}</h1>
             })}
         </div>
     )
