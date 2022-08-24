@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import Display from './components/Display';
+import Create from './components/Create';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -27,7 +28,12 @@ function App() {
 
   return (
     <div className="App">
+      
+      <Create/>
+      <Display characters={characters} nations={nations} roles={roles}/>
+
       <Routes>
+        <Route path='/create' element={<Create/>} />
         <Route path='/display' element={<Display characters={characters} nations={nations} roles={roles}/>} />
       </Routes>
     </div>
