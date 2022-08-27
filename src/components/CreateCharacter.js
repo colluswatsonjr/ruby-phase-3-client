@@ -1,21 +1,34 @@
 import { useState } from "react"
 
-function CreateCharacter() {
-    const [form, setForm] = useState({name: '', nation: 1, role: 1 })
-    function handleSubmit(e){
+function CreateCharacter({ onCreateCharacter }) {
+    const [form, setForm] = useState({ character_name: '', nation_id: 1, role_id: 1 })
+    
+    function handleSubmit(e) {
         e.preventDefault()
-        console.log(form)
+        fetch("http://localhost:9292/characters", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form),
+        })
+            .then(r => r.json())
+            .then(data => {
+                onCreateCharacter(data)
+            })
+            .catch(e => console.log(e))
+            setForm({ character_name: '', nation_id: 1, role_id: 1 })
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 Name:
-                <input type="text" name="name" onChange={(e)=>{setForm({...form, name:e.target.value})}}/>
+                <input type="text" name="character_name" value={form.character_name} onChange={(e) => { setForm({ ...form, character_name: e.target.value }) }} />
             </label>
             <label>
                 Select Nation:
-                <select name="nation" onChange={(e)=>{setForm({...form, nation:e.target.value})}}>
+                <select name="nation_id" value={form.nation_id} onChange={(e) => { setForm({ ...form, nation_id: Number(e.target.value) }) }}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -23,11 +36,12 @@ function CreateCharacter() {
             </label>
             <label>
                 Select Role:
-                <select name="role" onChange={(e)=>{setForm({...form, role:e.target.value})}}>
+                <select name="role_id" value={form.role_id} onChange={(e) => { setForm({ ...form, role_id: Number(e.target.value) }) }}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
-                </select>            </label>
+                </select>
+            </label>
             <input type="submit" value="Submit" />
         </form>
     )
