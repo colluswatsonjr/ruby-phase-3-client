@@ -4,6 +4,7 @@ import './App.css';
 
 import Display from './components/Display';
 import CreateCharacter from './components/CreateCharacter';
+import CreateNation from './components/CreateNation';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -51,6 +52,7 @@ function App() {
         <Route path='/' element={
           <div>
             <CreateCharacter onCreateCharacter={handleCreateCharacter}/>
+            <CreateNation/>
             <Display characters={characters} nations={nations} roles={roles} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
           </div>
         } />

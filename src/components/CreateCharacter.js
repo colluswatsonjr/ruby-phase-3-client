@@ -22,6 +22,7 @@ function CreateCharacter({ onCreateCharacter }) {
 
     return (
         <form onSubmit={handleSubmit}>
+            <div>Create Character!</div>
             <label>
                 Name:
                 <input type="text" name="character_name" value={form.character_name} onChange={(e) => { setForm({ ...form, character_name: e.target.value }) }} />
