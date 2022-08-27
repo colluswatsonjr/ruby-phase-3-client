@@ -5,6 +5,7 @@ import './App.css';
 import Display from './components/Display';
 import CreateCharacter from './components/CreateCharacter';
 import CreateNation from './components/CreateNation';
+import CreateRole from './components/CreateRole';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -53,6 +54,7 @@ function App() {
           <div>
             <CreateCharacter onCreateCharacter={handleCreateCharacter}/>
             <CreateNation/>
+            <CreateRole/>
             <Display characters={characters} nations={nations} roles={roles} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
           </div>
         } />
