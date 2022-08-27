@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import Display from './components/Display';
-import Create from './components/Create';
+import CreateCharacter from './components/CreateCharacter';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -26,15 +26,34 @@ function App() {
       .then((roles) => setRoles(roles));
   }, []);
 
+  function handleCharacterUpdate(data){
+    console.log(data)
+    const updateCharacters = characters.map((character)=>{
+      if(character.id === data.id){
+        return data
+      }else{
+        return character
+      }
+    })
+    setCharacters(updateCharacters)
+  }
+  function handleCreateCharacter(newCharacter){
+    setCharacters([...characters, newCharacter])
+  }
+  function handleCharacterDelete(id){
+    const updateCharacters = characters.filter((character)=> character.id !== id);
+    setCharacters(updateCharacters);
+  }
+
   return (
     <div className="App">
-      
-      <Create/>
-      <Display characters={characters} nations={nations} roles={roles}/>
-
       <Routes>
-        <Route path='/create' element={<Create/>} />
-        <Route path='/display' element={<Display characters={characters} nations={nations} roles={roles}/>} />
+        <Route path='/' element={
+          <div>
+            <CreateCharacter onCreateCharacter={handleCreateCharacter}/>
+            <Display characters={characters} nations={nations} roles={roles} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
+          </div>
+        } />
       </Routes>
     </div>
   );
