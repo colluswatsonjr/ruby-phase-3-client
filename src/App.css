@@ -11,6 +11,8 @@
   background-color: black;
   border: 5px solid greenyellow;
   border-radius: 10px;
+
+  list-style: none;
 }
 .Create li {
   margin: 1%;

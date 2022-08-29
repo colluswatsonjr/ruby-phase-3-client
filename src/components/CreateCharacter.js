@@ -23,26 +23,33 @@ function CreateCharacter({ onCreateCharacter }) {
     return (
         <form onSubmit={handleSubmit}>
             <div>Create Character!</div>
+            <br/>
             <label>
                 Name:
+                <br/>
                 <input type="text" name="character_name" value={form.character_name} onChange={(e) => { setForm({ ...form, character_name: e.target.value }) }} />
             </label>
+            <br/>
             <label>
                 Select Nation:
+                <br/>
                 <select name="nation_id" value={form.nation_id} onChange={(e) => { setForm({ ...form, nation_id: Number(e.target.value) }) }}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
                 </select>
             </label>
+            <br/>
             <label>
                 Select Role:
+                <br/>
                 <select name="role_id" value={form.role_id} onChange={(e) => { setForm({ ...form, role_id: Number(e.target.value) }) }}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
                 </select>
             </label>
+            <br/>
             <input type="submit" value="Submit" />
         </form>
     )

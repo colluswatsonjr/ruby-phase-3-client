@@ -3,11 +3,11 @@ import CharacterCard from "./CharacterCard"
 function DisplayCharacters({ characters, onCharacterUpdate, onCharacterDelete }) {
 
     return (
-        <li>
+        <ul>
             {characters.map((character) => {
-                return <CharacterCard key={character.id} character={character} onCharacterUpdate={onCharacterUpdate} onCharacterDelete={onCharacterDelete} />
+                return <li><CharacterCard key={character.id} character={character} onCharacterUpdate={onCharacterUpdate} onCharacterDelete={onCharacterDelete} /></li>
             })}
-        </li>
+        </ul>
     )
 
 }
