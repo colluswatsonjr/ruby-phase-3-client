@@ -1,3 +1,20 @@
 .App {
   text-align: center;
+  padding: 1vh;
+  border-radius: 10px;
+  color: greenyellow;
+  background-color: black;
+  border: 3px solid greenyellow;
+}
+.Create{
+  color: greenyellow;
+  background-color: black;
+  border: 3px solid greenyellow;
+  border-radius: 10px;
+}
+.Display{
+  color: greenyellow;
+  background-color: black;
+  border: 3px solid greenyellow;
+  border-radius: 10px;
 }
