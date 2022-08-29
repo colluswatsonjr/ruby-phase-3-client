@@ -29,8 +29,8 @@ function App() {
   }, []);
 
 
-  function handleCharacterCreate(newCharacter) {
-    setCharacters([...characters, newCharacter])
+  function handleCharacterCreate(character) {
+    setCharacters([...characters, character])
   }
   function handleCharacterDelete(id) {
     const updateCharacters = characters.filter((character) => character.id !== id);
@@ -47,6 +47,16 @@ function App() {
     })
     setCharacters(updateCharacters)
   }
+  function handleNationCreate(nation){
+    console.log(nation)
+    // setNations([...nations, newNation])
+  }  
+  function handleRoleCreate(role){
+    console.log(role)
+    // setNations([...nations, newNation])
+  }
+  console.log(nations)
+  console.log(roles)
   return (
     <Routes>
       <Route path='/' element={
@@ -54,9 +64,9 @@ function App() {
           <h1>APP!!!</h1>
           <ul className='Create'>
             <h1>Create!!</h1>
-            <li><CreateCharacter characters={characters} onCreateCharacter={handleCharacterCreate} /></li>
-            <li><CreateNation /></li>
-            <li><CreateRole /></li>
+            <li><CreateCharacter onCharacterCreate={handleCharacterCreate} /></li>
+            <li><CreateNation onNationCreate={handleNationCreate} /></li>
+            <li><CreateRole onRoleCreate={handleRoleCreate}/></li>
           </ul>
           <div className='Display'>
             <h1>Display!!</h1>
