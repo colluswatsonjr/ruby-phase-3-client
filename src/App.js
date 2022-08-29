@@ -10,11 +10,11 @@ import CreateRole from './components/CreateRole';
 function App() {
   const [characters, setCharacters] = useState([])
 
-  useEffect(() => {
-    fetch("http://localhost:9292/characters")
-      .then((r) => r.json())
-      .then((characters) => setCharacters(characters));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/characters")
+  //     .then((r) => r.json())
+  //     .then((characters) => setCharacters(characters));
+  // }, []);
   // useEffect(() => {
   //   fetch("http://localhost:9292/nations")
   //     .then((r) => r.json())
@@ -49,15 +49,17 @@ function App() {
     <Routes>
       <Route path='/' element={
         <div className='App'>
+          <h1>APP!!!</h1>
           <ul className='Create'>
-            <h1>Create!</h1>
+            <h1>Create!!</h1>
             <li><CreateCharacter characters={characters} onCreateCharacter={handleCreateCharacter} /></li>
             <li><CreateNation /></li>
             <li><CreateRole /></li>
           </ul>
-          <div>
-            <DisplayCharacters onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
-          </div>
+          <ul className='Display'>
+            <h1>Display!!</h1>
+            <DisplayCharacters characters={characters} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
+          </ul>
         </div>
       } />
     </Routes >

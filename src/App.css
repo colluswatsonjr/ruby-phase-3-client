@@ -1,20 +1,28 @@
 .App {
-  text-align: center;
-  padding: 1vh;
-  border-radius: 10px;
+  margin: 1%;
   color: greenyellow;
   background-color: black;
-  border: 3px solid greenyellow;
+  border: 5px solid greenyellow;
+  border-radius: 10px;
 }
 .Create{
+  margin: 1%;
   color: greenyellow;
   background-color: black;
-  border: 3px solid greenyellow;
+  border: 5px solid greenyellow;
+  border-radius: 10px;
+}
+.Create li {
+  margin: 1%;
+  color: greenyellow;
+  background-color: black;
+  border: 5px solid greenyellow;
   border-radius: 10px;
 }
 .Display{
+  margin: 1%;
   color: greenyellow;
   background-color: black;
-  border: 3px solid greenyellow;
+  border: 5px solid greenyellow;
   border-radius: 10px;
 }
