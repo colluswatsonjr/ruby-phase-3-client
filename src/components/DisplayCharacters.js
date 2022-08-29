@@ -1,15 +1,15 @@
 import CharacterCard from "./CharacterCard"
 
-function Display({ characters, nations, roles, onCharacterUpdate, onCharacterDelete }) {
+function DisplayCharacters({ characters, onCharacterUpdate, onCharacterDelete }) {
 
     return (
-        <div className="Display">
-            <h1>Display!!</h1>
+        <li>
             {characters.map((character) => {
                 return <CharacterCard key={character.id} character={character} onCharacterUpdate={onCharacterUpdate} onCharacterDelete={onCharacterDelete} />
             })}
-        </div>
+        </li>
     )
+
 }
 
-export default Display
+export default DisplayCharacters
