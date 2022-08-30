@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 function CreateNation({ onNationCreate }) {
-    const [form, setForm] = useState({ nation_name: '', nation_location: 'unknown' })
+    const [form, setForm] = useState({ nation_name: '', nation_location: '' })
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -14,9 +14,12 @@ function CreateNation({ onNationCreate }) {
         })
             .then(r => r.json())
             .then(data => {
-                console.log(data)
+                onNationCreate(data)
             })
             .catch(e => console.log(e))
+        // onNationCreate(form)
+        setForm({ nation_name: '', nation_location: '' })
+
     }
 
     return (
@@ -28,10 +31,17 @@ function CreateNation({ onNationCreate }) {
                 <br />
                 <input type="text" name="nation_name" onChange={(e) => { setForm({ ...form, nation_name: e.target.value }) }} />
             </label>
+            <br />
+
+            Nation Location:
+            <br />
+
             <select name="nation_location" value={form.nation_location} onChange={(e) => { setForm({ ...form, nation_location: e.target.value }) }}>
-                <option value={1}>Mountains</option>
-                <option value={2}>Canyons</option>
-                <option value={3}>Valleys</option>
+                <option value={null}>-</option>
+                <option value={'Mountains'}>Mountains</option>
+                <option value={'Canyons'}>Canyons</option>
+                <option value={'Valleys'}>Valleys</option>
+                <option value={'Plains'}>Plains</option>
             </select>
             <br />
             <input type="submit" value="Submit" />

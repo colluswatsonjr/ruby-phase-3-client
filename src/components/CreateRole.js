@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-function CreateRole({onRoleCreate}) {
-    const [form, setForm] = useState({ role_name: '', role_location: 'unknown' })
+function CreateRole({ onRoleCreate }) {
+    const [form, setForm] = useState({ role_title: '', role_rating: '', role_description: '' })
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -17,22 +17,37 @@ function CreateRole({onRoleCreate}) {
                 onRoleCreate(data)
             })
             .catch(e => console.log(e))
+        // onRoleCreate(form)
+        setForm({ role_name: '', role_location: '' })
     }
+    console.log(form)
 
     return (
-        <form onSubmit={null}>
+        <form onSubmit={handleSubmit}>
             <div>Create Role!</div>
             <br />
             <label>
                 Role Title:
-                <br/>
-                <input type="text" name="role_title" onChange={null} />
+                <br />
+                <input type="text" name="role_title" onChange={(e) => { setForm({ ...form, role_title: e.target.value }) }} />
             </label>
+            <br />
+            Role Rating:
+            <br />
+            <select name="role_rating" value={form.role_rating} onChange={(e) => { setForm({ ...form, role_rating: e.target.value }) }}>
+                <option value={null}>-</option>
+                <option value={'S'}>S</option>
+                <option value={'A'}>A</option>
+                <option value={'B'}>B</option>
+                <option value={'C'}>C</option>
+                <option value={'D'}>D</option>
+                <option value={'F'}>F</option>
+            </select>
             <br />
             <label>
                 Role Description:
-                <br/>
-                <textarea rows="4" cols="50"></textarea>
+                <br />
+                <textarea name="role_description" value={form.role_description} onChange={(e) => { setForm({ ...form, role_description: e.target.value }) }} rows="4" cols="50">{form.role_description}</textarea>
             </label>
             <br />
             <input type="submit" value="Submit" />
