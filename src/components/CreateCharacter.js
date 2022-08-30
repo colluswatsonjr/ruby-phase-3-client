@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreateCharacter({ onCreateCharacter }) {
+function CreateCharacter({ nations, roles, onCharacterCreate }) {
     const [form, setForm] = useState({ character_name: '', nation_id: 1, role_id: 1 })
 
     function handleSubmit(e) {
@@ -14,11 +14,20 @@ function CreateCharacter({ onCreateCharacter }) {
         })
             .then(r => r.json())
             .then(data => {
-                onCreateCharacter(data)
+                onCharacterCreate(data)
             })
             .catch(e => console.log(e))
+        // onCharacterCreate(form)
         setForm({ character_name: '', nation_id: 1, role_id: 1 })
     }
+
+    const listNations = nations.map((nation) => {
+        return <option key={nation.id} value={nation.id}>{nation.nation_name}</option>
+    })
+    const listRoles = roles.map((role) => {
+        return <option key={role.id} value={role.id}>{role.role_title}</option>
+    })
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -34,9 +43,7 @@ function CreateCharacter({ onCreateCharacter }) {
                 Select Nation:
                 <br />
                 <select name="nation_id" value={form.nation_id} onChange={(e) => { setForm({ ...form, nation_id: Number(e.target.value) }) }}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
+                    {listNations}
                 </select>
             </label>
             <br />
@@ -44,9 +51,7 @@ function CreateCharacter({ onCreateCharacter }) {
                 Select Role:
                 <br />
                 <select name="role_id" value={form.role_id} onChange={(e) => { setForm({ ...form, role_id: Number(e.target.value) }) }}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
+                    {listRoles}
                 </select>
             </label>
             <br />

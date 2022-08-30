@@ -30,6 +30,7 @@ function App() {
 
 
   function handleCharacterCreate(character) {
+    console.log(character)
     setCharacters([...characters, character])
   }
   function handleCharacterDelete(id) {
@@ -49,12 +50,13 @@ function App() {
   }
   function handleNationCreate(nation){
     console.log(nation)
-    // setNations([...nations, newNation])
+    setNations([...nations, nation])
   }  
   function handleRoleCreate(role){
     console.log(role)
-    // setNations([...nations, newNation])
+    setRoles([...roles, role])
   }
+  console.log(characters)
   console.log(nations)
   console.log(roles)
   return (
@@ -64,7 +66,7 @@ function App() {
           <h1>APP!!!</h1>
           <ul className='Create'>
             <h1>Create!!</h1>
-            <li><CreateCharacter onCharacterCreate={handleCharacterCreate} /></li>
+            <li><CreateCharacter nations={nations} roles={roles} onCharacterCreate={handleCharacterCreate} /></li>
             <li><CreateNation onNationCreate={handleNationCreate} /></li>
             <li><CreateRole onRoleCreate={handleRoleCreate}/></li>
           </ul>
