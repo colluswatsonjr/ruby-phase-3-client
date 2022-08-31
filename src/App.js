@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import Navbar from './components/Navbar';
 import DisplayCharacters from './components/DisplayCharacters';
 import CreateCharacter from './components/CreateCharacter';
 import CreateNation from './components/CreateNation';
@@ -51,13 +52,27 @@ function App() {
   function handleRoleCreate(role) {
     setRoles([...roles, role])
   }
+
+  function handleNationDelete(id) {
+    const updateNations = nations.filter((nation) => nation.id !== id);
+    setNations(updateNations)
+  }
+
+  function handleRoleDelete(id) {
+    const updateRoles = roles.filter((role) => role.id !== id);
+    setRoles(updateRoles)
+  }
   return (
-    <Routes>
-      <Route path='/' element={<DisplayCharacters characters={characters} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />} />
-      <Route path='/characters' element={<CreateCharacter nations={nations} roles={roles} characters={characters} onCharacterCreate={handleCharacterCreate} />} />
-      <Route path='/nations' element={<CreateNation nations={nations} onNationCreate={handleNationCreate} />} />
-      <Route path='/roles' element={<CreateRole roles={roles} onRoleCreate={handleRoleCreate} />} />
-    </Routes >
+    <div>
+      <Navbar/>
+      <br/>
+      <Routes>
+        <Route path='/' element={<DisplayCharacters characters={characters} nations={nations} roles={roles} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />} />
+        <Route path='/characters' element={<CreateCharacter nations={nations} roles={roles} characters={characters} onCharacterCreate={handleCharacterCreate} />} />
+        <Route path='/nations' element={<CreateNation nations={nations} onNationCreate={handleNationCreate} onNationDelete={handleNationDelete} />} />
+        <Route path='/roles' element={<CreateRole roles={roles} onRoleCreate={handleRoleCreate} onRoleDelete={handleRoleDelete} />} />
+      </Routes >
+    </div>
   );
 }
 

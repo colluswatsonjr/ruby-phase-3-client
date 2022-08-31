@@ -2,11 +2,15 @@
 import { useState } from "react";
 import EditCharacter from "./EditCharacter";
 
-function CharacterCard({ character, onCharacterUpdate, onCharacterDelete }) {
+function CharacterCard({ character, nations, roles, onCharacterUpdate, onCharacterDelete }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
     const { id, character_name, nation_id, role_id } = character
+    // const nationName = nations.find((nation=>))
+    const nation = nations.filter((nation)=>nation_id === nation.id)
+    const role = roles.filter((role)=>role_id === role.id)
+    
 
     function handleUpdateCharacter(data){
         setIsEditing(false)
@@ -31,8 +35,8 @@ function CharacterCard({ character, onCharacterUpdate, onCharacterDelete }) {
                 :
                 <div>
                     <h2>{character_name}</h2>
-                    <h3>{nation_id}:{role_id}</h3>
-                    
+                    <h3>{role[0].role_title} of {nation[0].nation_name}</h3>
+
                     <button onClick={() => setIsEditing(true)}>
                         <span role="img" aria-label="edit">
                             ✏️
