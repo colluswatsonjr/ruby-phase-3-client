@@ -17,12 +17,27 @@ function CreateNation({ nations, onNationCreate }) {
                 onNationCreate(data)
             })
             .catch(e => console.log(e))
-        // onNationCreate(form)
         setForm({ nation_name: '', nation_location: '' })
-
     }
+
     const listNations = nations.map((nation) => {
-        return <li key={nation.id}>{nation.nation_name} located in the {nation.nation_location}</li>
+        return (
+            <li key={nation.id}>
+                {nation.nation_name} located in the {nation.nation_location}
+                <br />
+                <br />
+                <button onClick={null}>
+                    <span role="img" aria-label="edit">
+                        ✏️
+                    </span>
+                </button>
+                <button onClick={null}>
+                    <span role="img" aria-label="delete">
+                        🗑
+                    </span>
+                </button>
+            </li>
+        )
     })
 
     return (
@@ -36,10 +51,8 @@ function CreateNation({ nations, onNationCreate }) {
                     <input type="text" name="nation_name" onChange={(e) => { setForm({ ...form, nation_name: e.target.value }) }} />
                 </label>
                 <br />
-
                 Nation Location:
                 <br />
-
                 <select name="nation_location" value={form.nation_location} onChange={(e) => { setForm({ ...form, nation_location: e.target.value }) }}>
                     <option value={null}>-</option>
                     <option value={'Mountains'}>Mountains</option>

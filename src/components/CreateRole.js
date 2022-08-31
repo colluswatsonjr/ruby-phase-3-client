@@ -21,7 +21,23 @@ function CreateRole({ roles, onRoleCreate }) {
         setForm({ role_title: '', role_rating: '', role_description: '' })
     }
     const listRoles = roles.map((role) => {
-        return <li key={role.id}>{role.role_title} || {role.role_rating}<br/>{role.role_description}</li>
+        return (
+            <li key={role.id}>
+                {role.role_title} || {role.role_rating}<br />{role.role_description}
+                <br />
+                <br />
+                <button onClick={null}>
+                    <span role="img" aria-label="edit">
+                        ✏️
+                    </span>
+                </button>
+                <button onClick={null}>
+                    <span role="img" aria-label="delete">
+                        🗑
+                    </span>
+                </button>
+            </li>
+        )
     })
 
     return (

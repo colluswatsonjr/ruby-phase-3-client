@@ -32,6 +32,7 @@ function CharacterCard({ character, onCharacterUpdate, onCharacterDelete }) {
                 <div>
                     <h2>{character_name}</h2>
                     <h3>{nation_id}:{role_id}</h3>
+                    
                     <button onClick={() => setIsEditing(true)}>
                         <span role="img" aria-label="edit">
                             ✏️

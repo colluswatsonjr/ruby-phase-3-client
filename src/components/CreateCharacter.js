@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreateCharacter({ nations, roles, onCharacterCreate }) {
+function CreateCharacter({ characters, nations, roles, onCharacterCreate }) {
     const [form, setForm] = useState({ character_name: '', nation_id: 1, role_id: 1 })
 
     function handleSubmit(e) {
@@ -17,9 +17,9 @@ function CreateCharacter({ nations, roles, onCharacterCreate }) {
                 onCharacterCreate(data)
             })
             .catch(e => console.log(e))
-        // onCharacterCreate(form)
         setForm({ character_name: '', nation_id: 1, role_id: 1 })
     }
+
 
     const listNations = nations.map((nation) => {
         return <option key={nation.id} value={nation.id}>{nation.nation_name}</option>
@@ -28,35 +28,59 @@ function CreateCharacter({ nations, roles, onCharacterCreate }) {
         return <option key={role.id} value={role.id}>{role.role_title}</option>
     })
 
+    const listCharacters = characters.map((character) => {
+        return (
+            <li key={character.id}>
+                {character.character_name} the {character.role_id} of {character.nation_id}
+                <br />
+                <br />
+                <button onClick={null}>
+                    <span role="img" aria-label="edit">
+                        ✏️
+                    </span>
+                </button>
+                <button onClick={null}>
+                    <span role="img" aria-label="delete">
+                        🗑
+                    </span>
+                </button>
+            </li>
+        )
+    })
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>Create Character!</div>
-            <br />
-            <label>
-                Name:
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>Create Character!</div>
                 <br />
-                <input type="text" name="character_name" value={form.character_name} onChange={(e) => { setForm({ ...form, character_name: e.target.value }) }} />
-            </label>
-            <br />
-            <label>
-                Select Nation:
+                <label>
+                    Name:
+                    <br />
+                    <input type="text" name="character_name" value={form.character_name} onChange={(e) => { setForm({ ...form, character_name: e.target.value }) }} />
+                </label>
                 <br />
-                <select name="nation_id" value={form.nation_id} onChange={(e) => { setForm({ ...form, nation_id: Number(e.target.value) }) }}>
-                    {listNations}
-                </select>
-            </label>
-            <br />
-            <label>
-                Select Role:
+                <label>
+                    Select Nation:
+                    <br />
+                    <select name="nation_id" value={form.nation_id} onChange={(e) => { setForm({ ...form, nation_id: Number(e.target.value) }) }}>
+                        {listNations}
+                    </select>
+                </label>
                 <br />
-                <select name="role_id" value={form.role_id} onChange={(e) => { setForm({ ...form, role_id: Number(e.target.value) }) }}>
-                    {listRoles}
-                </select>
-            </label>
-            <br />
-            <input type="submit" value="Submit" />
-        </form>
+                <label>
+                    Select Role:
+                    <br />
+                    <select name="role_id" value={form.role_id} onChange={(e) => { setForm({ ...form, role_id: Number(e.target.value) }) }}>
+                        {listRoles}
+                    </select>
+                </label>
+                <br />
+                <input type="submit" value="Submit" />
+            </form>
+            <ul>
+                {listCharacters}
+            </ul>
+        </div>
     )
 }
 

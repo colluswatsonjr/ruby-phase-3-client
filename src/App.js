@@ -28,9 +28,7 @@ function App() {
       .then((roles) => setRoles(roles));
   }, []);
 
-
   function handleCharacterCreate(character) {
-    console.log(character)
     setCharacters([...characters, character])
   }
   function handleCharacterDelete(id) {
@@ -38,7 +36,6 @@ function App() {
     setCharacters(updateCharacters);
   }
   function handleCharacterUpdate(data) {
-    console.log(data)
     const updateCharacters = characters.map((character) => {
       if (character.id === data.id) {
         return data
@@ -48,34 +45,18 @@ function App() {
     })
     setCharacters(updateCharacters)
   }
-  function handleNationCreate(nation){
-    console.log(nation)
+  function handleNationCreate(nation) {
     setNations([...nations, nation])
-  }  
-  function handleRoleCreate(role){
-    console.log(role)
+  }
+  function handleRoleCreate(role) {
     setRoles([...roles, role])
   }
-  console.log(characters)
-  console.log(nations)
-  console.log(roles)
   return (
     <Routes>
-      <Route path='/' element={
-        <div className='App'>
-          <h1>APP!!!</h1>
-          <ul className='Create'>
-            <h1>Create!!</h1>
-            <li><CreateCharacter nations={nations} roles={roles} onCharacterCreate={handleCharacterCreate} /></li>
-            <li><CreateNation nations={nations} onNationCreate={handleNationCreate} /></li>
-            <li><CreateRole roles={roles} onRoleCreate={handleRoleCreate}/></li>
-          </ul>
-          <div className='Display'>
-            <h1>Display!!</h1>
-            <DisplayCharacters characters={characters} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />
-          </div>
-        </div>
-      } />
+      <Route path='/' element={<DisplayCharacters characters={characters} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />} />
+      <Route path='/characters' element={<CreateCharacter nations={nations} roles={roles} characters={characters} onCharacterCreate={handleCharacterCreate} />} />
+      <Route path='/nations' element={<CreateNation nations={nations} onNationCreate={handleNationCreate} />} />
+      <Route path='/roles' element={<CreateRole roles={roles} onRoleCreate={handleRoleCreate} />} />
     </Routes >
   );
 }
