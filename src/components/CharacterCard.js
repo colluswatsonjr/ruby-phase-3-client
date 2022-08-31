@@ -30,7 +30,10 @@ function CharacterCard({ character, nations, roles, onCharacterUpdate, onCharact
             {isEditing ?
                 <EditCharacter 
                 character={character}
+                nations={nations}
+                roles={roles}
                 onUpdateCharacter={handleUpdateCharacter}
+
                  />
                 :
                 <div>

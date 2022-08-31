@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreateRole({ roles, onRoleCreate, onRoleDelete }) {
+function CreateRole({ roles, onRoleCreate }) {
     const [form, setForm] = useState({ role_title: '', role_rating: '', role_description: '' })
 
     function handleSubmit(e) {
@@ -20,25 +20,10 @@ function CreateRole({ roles, onRoleCreate, onRoleDelete }) {
         setForm({ role_title: '', role_rating: '', role_description: '' })
     }
 
-    function handleDelete(id) {
-        fetch(`http://localhost:9292/roles/${id}`, {
-            method: "DELETE"
-        });
-        onRoleDelete(id);
-    }
-
-
     const listRoles = roles.map((role) => {
         return (
             <div key={role.id}>
                 {role.role_title} || {role.role_rating}<br />{role.role_description}
-                <br />
-                <br />
-                <button onClick={() => handleDelete(role.id)}>
-                    <span role="img" aria-label="delete">
-                        🗑
-                    </span>
-                </button>
             </div>
         )
     })

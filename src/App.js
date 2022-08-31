@@ -53,15 +53,6 @@ function App() {
     setRoles([...roles, role])
   }
 
-  function handleNationDelete(id) {
-    const updateNations = nations.filter((nation) => nation.id !== id);
-    setNations(updateNations)
-  }
-
-  function handleRoleDelete(id) {
-    const updateRoles = roles.filter((role) => role.id !== id);
-    setRoles(updateRoles)
-  }
   return (
     <div>
       <Navbar/>
@@ -69,8 +60,8 @@ function App() {
       <Routes>
         <Route path='/' element={<DisplayCharacters characters={characters} nations={nations} roles={roles} onCharacterUpdate={handleCharacterUpdate} onCharacterDelete={handleCharacterDelete} />} />
         <Route path='/characters' element={<CreateCharacter nations={nations} roles={roles} characters={characters} onCharacterCreate={handleCharacterCreate} />} />
-        <Route path='/nations' element={<CreateNation nations={nations} onNationCreate={handleNationCreate} onNationDelete={handleNationDelete} />} />
-        <Route path='/roles' element={<CreateRole roles={roles} onRoleCreate={handleRoleCreate} onRoleDelete={handleRoleDelete} />} />
+        <Route path='/nations' element={<CreateNation nations={nations} onNationCreate={handleNationCreate}/>} />
+        <Route path='/roles' element={<CreateRole roles={roles} onRoleCreate={handleRoleCreate}/>} />
       </Routes >
     </div>
   );
