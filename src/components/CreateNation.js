@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreateNation({ nations, onNationCreate }) {
+function CreateNation({ nations, onNationCreate, onNationDelete }) {
     const [form, setForm] = useState({ nation_name: '', nation_location: '' })
 
     function handleSubmit(e) {
@@ -19,6 +19,13 @@ function CreateNation({ nations, onNationCreate }) {
             .catch(e => console.log(e))
         setForm({ nation_name: '', nation_location: '' })
     }
+    function handleDelete(id) {
+        fetch(`http://localhost:9292/nations/${id}`, {
+            method: "DELETE"
+        });
+        onNationDelete(id);
+    }
+
 
     const listNations = nations.map((nation) => {
         return (
@@ -26,12 +33,7 @@ function CreateNation({ nations, onNationCreate }) {
                 {nation.nation_name} located in the {nation.nation_location}
                 <br />
                 <br />
-                <button onClick={null}>
-                    <span role="img" aria-label="edit">
-                        ✏️
-                    </span>
-                </button>
-                <button onClick={null}>
+                <button onClick={()=>handleDelete(nation.id)}>
                     <span role="img" aria-label="delete">
                         🗑
                     </span>
