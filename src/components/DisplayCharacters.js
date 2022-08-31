@@ -1,12 +1,12 @@
 import CharacterCard from "./CharacterCard"
 
-function DisplayCharacters({ characters, onCharacterUpdate, onCharacterDelete }) {
+function DisplayCharacters({ characters, nations, roles, onCharacterUpdate, onCharacterDelete }) {
     return (
-        <ul>
+        <div>
             {characters.map((character) => {
-                return <li  key={character.id}><CharacterCard character={character} onCharacterUpdate={onCharacterUpdate} onCharacterDelete={onCharacterDelete} /></li>
+                return <CharacterCard key={character.id} character={character} nations={nations} roles={roles} onCharacterUpdate={onCharacterUpdate} onCharacterDelete={onCharacterDelete} />
             })}
-        </ul>
+        </div>
     )
 
 }

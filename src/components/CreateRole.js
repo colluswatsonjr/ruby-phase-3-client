@@ -30,16 +30,16 @@ function CreateRole({ roles, onRoleCreate, onRoleDelete }) {
 
     const listRoles = roles.map((role) => {
         return (
-            <li key={role.id}>
+            <div key={role.id}>
                 {role.role_title} || {role.role_rating}<br />{role.role_description}
                 <br />
                 <br />
-                <button onClick={()=>handleDelete(role.id)}>
+                <button onClick={() => handleDelete(role.id)}>
                     <span role="img" aria-label="delete">
                         🗑
                     </span>
                 </button>
-            </li>
+            </div>
         )
     })
 
@@ -74,9 +74,7 @@ function CreateRole({ roles, onRoleCreate, onRoleDelete }) {
                 <br />
                 <input type="submit" value="Submit" />
             </form>
-            <ul>
-                {listRoles}
-            </ul>
+            {listRoles}
         </div>
     )
 }

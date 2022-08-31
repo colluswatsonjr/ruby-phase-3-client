@@ -30,21 +30,16 @@ function CreateCharacter({ characters, nations, roles, onCharacterCreate }) {
 
     const listCharacters = characters.map((character) => {
         return (
-            <li key={character.id}>
+            <div key={character.id}>
                 {character.character_name} the {character.role_id} of {character.nation_id}
                 <br />
                 <br />
-                <button onClick={null}>
-                    <span role="img" aria-label="edit">
-                        ✏️
-                    </span>
-                </button>
                 <button onClick={null}>
                     <span role="img" aria-label="delete">
                         🗑
                     </span>
                 </button>
-            </li>
+            </div>
         )
     })
 
@@ -77,9 +72,7 @@ function CreateCharacter({ characters, nations, roles, onCharacterCreate }) {
                 <br />
                 <input type="submit" value="Submit" />
             </form>
-            <ul>
-                {listCharacters}
-            </ul>
+            {listCharacters}
         </div>
     )
 }

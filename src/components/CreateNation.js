@@ -29,7 +29,7 @@ function CreateNation({ nations, onNationCreate, onNationDelete }) {
 
     const listNations = nations.map((nation) => {
         return (
-            <li key={nation.id}>
+            <div key={nation.id}>
                 {nation.nation_name} located in the {nation.nation_location}
                 <br />
                 <br />
@@ -38,7 +38,7 @@ function CreateNation({ nations, onNationCreate, onNationDelete }) {
                         🗑
                     </span>
                 </button>
-            </li>
+            </div>
         )
     })
 
@@ -65,9 +65,7 @@ function CreateNation({ nations, onNationCreate, onNationDelete }) {
                 <br />
                 <input type="submit" value="Submit" />
             </form>
-            <ul>
                 {listNations}
-            </ul>
         </div>
     )
 }
