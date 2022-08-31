@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <div >
             <h1 variant="h1">
-                MySite
+                CREATION
             </h1>
             <Link to="/">
                 <div variant="h5">HOME</div>
