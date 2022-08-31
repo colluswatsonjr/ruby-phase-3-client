@@ -67,8 +67,8 @@ function App() {
           <ul className='Create'>
             <h1>Create!!</h1>
             <li><CreateCharacter nations={nations} roles={roles} onCharacterCreate={handleCharacterCreate} /></li>
-            <li><CreateNation onNationCreate={handleNationCreate} /></li>
-            <li><CreateRole onRoleCreate={handleRoleCreate}/></li>
+            <li><CreateNation nations={nations} onNationCreate={handleNationCreate} /></li>
+            <li><CreateRole roles={roles} onRoleCreate={handleRoleCreate}/></li>
           </ul>
           <div className='Display'>
             <h1>Display!!</h1>
